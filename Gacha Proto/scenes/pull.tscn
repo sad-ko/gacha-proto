@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/pull_char.gd" type="Script" id=1]
+[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/global_chars.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 27
+outline_size = 1
+outline_color = Color( 0.0745098, 0.0705882, 0.0705882, 1 )
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+outline_size = 1
+outline_color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+outline_size = 1
+outline_color = Color( 0.0705882, 0.0666667, 0.0666667, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+outline_size = 1
+outline_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventAction" id=5]
+action = "Pull"
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+outline_size = 1
+outline_color = Color( 0.831373, 0.25098, 0.690196, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[node name="PullMenu" type="Node"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -1582.09
+margin_top = -693.351
+margin_right = 3127.91
+margin_bottom = 1956.65
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit game" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -20.0
+margin_right = 40.0
+text = "Press Esc to exit."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Char" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = 18.1189
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 1, 0.0705882, 0.854902, 1 )
+text = "Char:"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NumPull" type="Label" parent="Control/Char"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 174.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 2 )
+text = "Num pull:"
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gems" type="Label" parent="Control/Char"]
+margin_left = -96.0
+margin_top = 180.0
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 3 )
+text = "Gems:"
+
+[node name="Pull" type="Button" parent="Control"]
+anchor_left = 0.159
+anchor_top = 2.18
+anchor_right = 0.159
+anchor_bottom = 2.18
+margin_left = -49.0
+margin_top = -20.4973
+margin_right = 73.0
+margin_bottom = 20.5027
+custom_fonts/font = SubResource( 4 )
+action_mode = 0
+shortcut = SubResource( 6 )
+text = "Pull"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 0.159
+anchor_top = 2.18
+anchor_right = 0.159
+anchor_bottom = 2.18
+margin_left = 894.6
+margin_top = -945.707
+margin_right = 1016.6
+margin_bottom = -904.707
+custom_fonts/font = SubResource( 4 )
+action_mode = 0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Promo" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -507.0
+margin_top = -134.0
+margin_right = -357.0
+margin_bottom = -131.0
+rect_rotation = 12.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Guaranteed SSR at 10 pulls!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Control/Pull" to="Control/Char" method="_on_Button_pressed"]
+[connection signal="pressed" from="Back" to="Control/Char" method="_on_Back_pressed"]
