@@ -58,7 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Exit game" type="Label" parent="."]
+[node name="ExitGame" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -121,6 +121,7 @@ custom_fonts/font = SubResource( 3 )
 text = "Gems:"
 
 [node name="Pull" type="Button" parent="Control"]
+visible = false
 anchor_left = 0.159
 anchor_top = 2.18
 anchor_right = 0.159

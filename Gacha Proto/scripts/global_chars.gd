@@ -29,16 +29,17 @@ func _ready():
 	char_list.append(sugimoto.char_name)
 	char_id.append(sugimoto)
 
-func _add_png(pull):
+func add_png(pull):
 	if char_id[pull].get_parent():
 		char_id[pull].get_parent().remove_child(char_id[pull])
 	get_tree().current_scene.add_child(char_id[pull])
+	#Moves child in the tree index to avoid overlaying on the text
 	get_tree().current_scene.move_child(char_id[pull], 1)
 
-func _effect(show_effect, pull):
+func effect(show_effect, pull):
 	char_id[pull].png.modulate.a = show_effect
 	char_id[pull].overlay.modulate.a = show_effect 
 
-func _remove_effect(pull):
+func remove_effect(pull):
 	char_id[pull].png.modulate.a = 0.0
 	char_id[pull].overlay.modulate.a = 0.0 

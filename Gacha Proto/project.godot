@@ -14,6 +14,10 @@ config/name="Gacha Proto"
 run/main_scene="res://scenes/menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Stats="*res://scripts/stats.gd"
+
 [display]
 
 window/size/width=1280
