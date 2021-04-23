@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://videos/roll_video.webm" type="VideoStream" id=1]
+[ext_resource path="res://scripts/pull_video.gd" type="Script" id=2]
+[ext_resource path="res://pngs/jorge.png" type="Texture" id=3]
+[ext_resource path="res://videos/pull_effect.wav" type="AudioStream" id=4]
+[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://videos/star.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 2
+outline_color = Color( 0.964706, 0.341176, 0.823529, 1 )
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 5 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stream = ExtResource( 1 )
+volume_db = -15.0
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0627451, 0.0627451, 0.0627451, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 100.0
+margin_right = 648.0
+margin_bottom = 720.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = -5.091
+anchor_top = 4.333
+anchor_right = -5.091
+anchor_bottom = 4.333
+margin_left = 7616.48
+margin_top = -2642.76
+margin_right = 7816.48
+margin_bottom = -2570.76
+custom_fonts/font = SubResource( 1 )
+text = "JORGE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star" type="TextureRect" parent="Control"]
+margin_left = 940.0
+margin_top = 550.0
+margin_right = 980.0
+margin_bottom = 590.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star2" type="TextureRect" parent="Control"]
+margin_left = 980.0
+margin_top = 550.0
+margin_right = 1020.0
+margin_bottom = 590.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star3" type="TextureRect" parent="Control"]
+margin_left = 1020.0
+margin_top = 550.0
+margin_right = 1060.0
+margin_bottom = 590.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star4" type="TextureRect" parent="Control"]
+margin_left = 1060.0
+margin_top = 550.0
+margin_right = 1100.0
+margin_bottom = 590.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star5" type="TextureRect" parent="Control"]
+margin_left = 1100.0
+margin_top = 550.0
+margin_right = 1140.0
+margin_bottom = 590.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
