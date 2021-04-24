@@ -19,8 +19,8 @@ func _ready():
 script = SubResource( 1 )
 
 [node name="PNG" type="TextureRect" parent="."]
-margin_left = 348.0
-margin_right = 896.0
+margin_left = 50.0
+margin_right = 598.0
 margin_bottom = 720.0
 texture = ExtResource( 1 )
 stretch_mode = 1
@@ -29,6 +29,7 @@ __meta__ = {
 }
 
 [node name="Overlay" type="ColorRect" parent="."]
+visible = false
 margin_left = 348.0
 margin_right = 896.0
 margin_bottom = 720.0

@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://videos/roll_video.webm" type="VideoStream" id=1]
 [ext_resource path="res://scripts/pull_video.gd" type="Script" id=2]
-[ext_resource path="res://pngs/jorge.png" type="Texture" id=3]
 [ext_resource path="res://videos/pull_effect.wav" type="AudioStream" id=4]
 [ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://videos/star.png" type="Texture" id=6]
+[ext_resource path="res://scripts/pull_char-02.gd" type="Script" id=7]
+[ext_resource path="res://scripts/global_chars.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -15,8 +16,17 @@ use_filter = true
 extra_spacing_char = 1
 font_data = ExtResource( 5 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 24
+outline_size = 1
+outline_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+font_data = ExtResource( 5 )
+
 [node name="Node" type="Node"]
 script = ExtResource( 2 )
+
+[node name="Pull" type="Node" parent="."]
+script = ExtResource( 8 )
 
 [node name="VideoPlayer" type="VideoPlayer" parent="."]
 anchor_right = 1.0
@@ -36,15 +46,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 100.0
-margin_right = 648.0
-margin_bottom = 720.0
-texture = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
@@ -59,18 +60,19 @@ margin_right = 7816.48
 margin_bottom = -2570.76
 custom_fonts/font = SubResource( 1 )
 text = "JORGE"
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="."]
+[node name="Stars" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star" type="TextureRect" parent="Control"]
+[node name="Star" type="TextureRect" parent="Stars"]
 margin_left = 940.0
 margin_top = 550.0
 margin_right = 980.0
@@ -80,7 +82,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star2" type="TextureRect" parent="Control"]
+[node name="Star2" type="TextureRect" parent="Stars"]
 margin_left = 980.0
 margin_top = 550.0
 margin_right = 1020.0
@@ -90,7 +92,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star3" type="TextureRect" parent="Control"]
+[node name="Star3" type="TextureRect" parent="Stars"]
 margin_left = 1020.0
 margin_top = 550.0
 margin_right = 1060.0
@@ -100,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star4" type="TextureRect" parent="Control"]
+[node name="Star4" type="TextureRect" parent="Stars"]
 margin_left = 1060.0
 margin_top = 550.0
 margin_right = 1100.0
@@ -110,7 +112,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star5" type="TextureRect" parent="Control"]
+[node name="Star5" type="TextureRect" parent="Stars"]
 margin_left = 1100.0
 margin_top = 550.0
 margin_right = 1140.0
@@ -119,3 +121,36 @@ texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StarsTimer" type="Timer" parent="Stars"]
+wait_time = 0.6
+
+[node name="StarsTimer2" type="Timer" parent="Stars/StarsTimer"]
+wait_time = 0.15
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 0.159
+anchor_top = 2.18
+anchor_right = 0.159
+anchor_bottom = 2.18
+margin_left = -163.52
+margin_top = -979.6
+margin_right = -41.52
+margin_bottom = -938.6
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+action_mode = 0
+enabled_focus_mode = 0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="Stars/StarsTimer" to="." method="_on_StarsTimer_timeout"]
+[connection signal="timeout" from="Stars/StarsTimer/StarsTimer2" to="." method="_on_StarsTimer2_timeout"]
+[connection signal="pressed" from="Back" to="Label" method="_on_Back_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

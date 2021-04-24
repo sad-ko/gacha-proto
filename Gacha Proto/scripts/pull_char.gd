@@ -8,18 +8,16 @@ var loops = 1
 var show_effect = 0.0
 
 onready var num_pull_text = $NumPull
-onready var gems_text = $Gems
-onready var Pull = get_parent().get_parent()
+onready var Pull = get_parent().get_node("Pull")
 
 func _ready():
 	randomize()
-	#text = "\tPress pull to roll" 
+	text = "" 
 	set_physics_process(false)
 	yield(get_tree().create_timer(0.5), "timeout")	#Waits for arrays to load
 	_pull()
 
 func _process(_delta):
-	gems_text.text = "Gems: " + "%d" % Stats.gems
 	if loops >= 4:	#It loops 3 times since loops starts at 1
 		set_physics_process(false)
 		text = "\nChar: " + Pull.char_list[pull]
