@@ -10,7 +10,6 @@ onready var Pull = $Pull
 onready var video = $VideoPlayer
 onready var name_t = $Label
 onready var overlay = $ColorRect
-onready var jorge = $TextureRect
 onready var sfx = $AudioStreamPlayer
 onready var back_button = $Back
 
@@ -37,7 +36,7 @@ func _ready() -> void:
 	name_t.modulate.a = 0.0
 	overlay.hide()
 	back_button.hide()
-	yield(get_tree().create_timer(2.5), "timeout")
+	yield(get_tree().create_timer(18.5), "timeout")
 	video.paused = true
 	overlay.show()
 	sfx.play()

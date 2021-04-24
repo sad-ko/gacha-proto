@@ -2,24 +2,19 @@
 
 [ext_resource path="res://videos/roll_video.webm" type="VideoStream" id=1]
 [ext_resource path="res://scripts/pull_video.gd" type="Script" id=2]
+[ext_resource path="res://font.res" type="DynamicFont" id=3]
 [ext_resource path="res://videos/pull_effect.wav" type="AudioStream" id=4]
-[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://fonts/ja-jp.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://videos/star.png" type="Texture" id=6]
 [ext_resource path="res://scripts/pull_char-02.gd" type="Script" id=7]
 [ext_resource path="res://scripts/global_chars.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 60
 outline_size = 2
 outline_color = Color( 0.964706, 0.341176, 0.823529, 1 )
 use_filter = true
 extra_spacing_char = 1
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 24
-outline_size = 1
-outline_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 font_data = ExtResource( 5 )
 
 [node name="Node" type="Node"]
@@ -32,7 +27,7 @@ script = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 stream = ExtResource( 1 )
-volume_db = -15.0
+volume_db = -5.0
 autoplay = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -55,10 +50,11 @@ anchor_top = 4.333
 anchor_right = -5.091
 anchor_bottom = 4.333
 margin_left = 7616.48
-margin_top = -2642.76
-margin_right = 7816.48
-margin_bottom = -2570.76
+margin_top = -2651.02
+margin_right = 7817.48
+margin_bottom = -2577.02
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.984314, 0.968627, 0.976471, 1 )
 text = "JORGE"
 script = ExtResource( 7 )
 __meta__ = {
@@ -138,7 +134,7 @@ margin_top = -979.6
 margin_right = -41.52
 margin_bottom = -938.6
 focus_mode = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 action_mode = 0
 enabled_focus_mode = 0
 text = "Back"
@@ -147,7 +143,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="Stars/StarsTimer" to="." method="_on_StarsTimer_timeout"]

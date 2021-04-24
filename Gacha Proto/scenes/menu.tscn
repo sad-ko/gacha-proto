@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Louis George Cafe.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/ja-jp.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menu.gd" type="Script" id=2]
 [ext_resource path="res://font.res" type="DynamicFont" id=3]
 
@@ -26,11 +26,11 @@ __meta__ = {
 [node name="PullMenu" type="Button" parent="."]
 anchor_left = 0.498
 anchor_top = 0.92
-anchor_right = 0.498
+anchor_right = 0.5
 anchor_bottom = 0.92
-margin_left = -67.4401
+margin_left = -100.0
 margin_top = -22.4
-margin_right = 67.5599
+margin_right = 70.0
 margin_bottom = 22.6
 focus_mode = 0
 custom_fonts/font = SubResource( 1 )
@@ -44,11 +44,11 @@ __meta__ = {
 [node name="Exit" type="Button" parent="."]
 anchor_left = 0.498
 anchor_top = 0.92
-anchor_right = 0.498
+anchor_right = 0.5
 anchor_bottom = 0.92
-margin_left = -597.44
+margin_left = -600.0
 margin_top = -22.4
-margin_right = -462.44
+margin_right = -450.0
 margin_bottom = 22.6
 focus_mode = 0
 custom_fonts/font = SubResource( 1 )
@@ -89,10 +89,10 @@ __meta__ = {
 }
 
 [node name="CostText" type="Label" parent="Cost"]
-margin_left = 769.045
+margin_left = 766.045
 margin_top = 649.4
-margin_right = 828.045
-margin_bottom = 677.4
+margin_right = 832.045
+margin_bottom = 678.4
 custom_fonts/font = ExtResource( 3 )
 text = "Cost:"
 __meta__ = {
@@ -103,7 +103,7 @@ __meta__ = {
 margin_left = 893.636
 margin_top = 649.178
 margin_right = 933.636
-margin_bottom = 677.178
+margin_bottom = 678.178
 custom_fonts/font = ExtResource( 3 )
 align = 1
 valign = 1
@@ -140,10 +140,10 @@ __meta__ = {
 }
 
 [node name="GemsText" type="Label" parent="Gems"]
-margin_left = 761.928
+margin_left = 760.928
 margin_top = 649.441
-margin_right = 833.928
-margin_bottom = 677.441
+margin_right = 836.928
+margin_bottom = 678.441
 custom_fonts/font = ExtResource( 3 )
 text = "Gems:"
 __meta__ = {
@@ -154,7 +154,7 @@ __meta__ = {
 margin_left = 883.0
 margin_top = 649.31
 margin_right = 946.0
-margin_bottom = 677.31
+margin_bottom = 678.31
 custom_fonts/font = ExtResource( 3 )
 align = 1
 __meta__ = {
