@@ -37,7 +37,7 @@ __meta__ = {
 
 [node name="Vertical" type="RayCast2D" parent="."]
 position = Vector2( 0, 42 )
-enabled = true
+enabled = false
 cast_to = Vector2( 0, 200 )
 collide_with_areas = true
 collide_with_bodies = false
