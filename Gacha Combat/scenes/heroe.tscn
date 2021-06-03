@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scripts/heroe.gd" type="Script" id=2]
+[ext_resource path="res://resources/hp_font.res" type="DynamicFont" id=3]
+[ext_resource path="res://resources/Roboto-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 37, 37 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+outline_size = 1
+outline_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "SFX"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("SFX:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.6 )
+}
+
+[node name="Player" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="PlayerArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="HeroesHP" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = -0.566
+anchor_right = 0.5
+anchor_bottom = -0.566
+margin_left = -132.623
+margin_top = -46.5237
+margin_right = 74.3771
+margin_bottom = -17.5237
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.576471, 0.752941, 0.85098, 1 )
+text = "10/10"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="Label" parent="."]
+margin_left = -136.516
+margin_top = -85.7197
+margin_right = -57.5164
+margin_bottom = -55.7197
+rect_rotation = 12.4108
+custom_fonts/font = SubResource( 2 )
+text = "Bang!"
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/SFX = SubResource( 3 )
+
+[connection signal="area_entered" from="PlayerArea2D" to="." method="_on_PlayerArea2D_area_entered"]

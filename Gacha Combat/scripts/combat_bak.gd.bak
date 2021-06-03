@@ -1,0 +1,65 @@
+extends Node2D
+
+const MAX_HEALT : int = 10
+var player_turn : bool = true
+var enemy_hp : int = 10
+var player_hp : int = 10
+var enm_previous_hp : int = 0
+var ply_previous_hp : int = 0
+var prev_position : Vector2
+var current_area
+onready var enemies_hp_indicator = $EnemyHP
+onready var heroes_hp_indicator = $HeroesHP
+onready var animation = $Tween
+
+func _ready() -> void:
+	enemies_hp_indicator.text += " %d" % enemy_hp + "/%d" % MAX_HEALT
+	heroes_hp_indicator.text += " %d" % player_hp + "/%d" % MAX_HEALT
+	enm_previous_hp = enemy_hp
+	ply_previous_hp = player_hp
+
+func _process(_delta: float) -> void:
+	if enm_previous_hp != enemy_hp:
+		print("Enemy - Status changed")
+		enemies_hp_indicator.text = "Enemy Health:"
+		enemies_hp_indicator.text += " %d" % enemy_hp + "/%d" % MAX_HEALT
+		enm_previous_hp = enemy_hp
+	if ply_previous_hp != player_hp:
+		print("Player - Status changed")
+		heroes_hp_indicator.text = "Heroes Health:"
+		heroes_hp_indicator.text += " %d" % player_hp + "/%d" % MAX_HEALT
+		ply_previous_hp = player_hp
+
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+func _on_Attack_to_Enemy(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("attack") and player_turn:
+		current_area = $Enemy/Area2D #Make this a global variable,
+		#it's needed so that the player animation won't get stuck on another area
+		
+		var mouse_position = get_global_mouse_position()
+		prev_position = $Player.position
+		animation.interpolate_property($Player, "position", $Player.position, mouse_position, 2,
+										animation.TRANS_SINE, animation.EASE_IN, 0.2)
+		animation.start()
+
+func _on_Timer_timeout() -> void:
+	print("Player: Ouch!")
+	player_hp -= 1
+	player_turn = true
+
+func play_back() -> void:
+	if $Player.position != prev_position:
+		animation.interpolate_property($Player, "position", null, prev_position, 2,
+										animation.TRANS_SINE, animation.EASE_OUT)
+		$Timer.start()
+		player_turn = false
+
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	if area == current_area:
+		animation.stop($Player)
+		print("Enemy: Ouch!")
+		enemy_hp -= 1
+		yield(get_tree().create_timer(0.7), "timeout")
+		play_back()

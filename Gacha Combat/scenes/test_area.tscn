@@ -1,0 +1,203 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/test_area.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://resources/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/heroe.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 52
+outline_size = 2
+outline_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 5
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+outline_size = 3
+outline_color = Color( 0.415686, 0.407843, 0.0352941, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "VictoryScreen"
+length = 1.3
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Overlay/Sprite:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 0.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Overlay/Panel:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 0.8 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Overlay/Label:visible_characters")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 13, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 1.3 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Overlay:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("VictoryLabel:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
+[node name="TestArea" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Enemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 361.705, 157.951 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1023.65, 338.394 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 361.705, 444.037 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 361.705
+margin_top = 611.252
+margin_right = 425.705
+margin_bottom = 675.252
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 494.328
+margin_top = 611.252
+margin_right = 558.328
+margin_bottom = 675.252
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 637.033
+margin_top = 611.252
+margin_right = 701.033
+margin_bottom = 675.252
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="."]
+margin_left = 778.549
+margin_top = 611.252
+margin_right = 842.549
+margin_bottom = 675.252
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button5" type="Button" parent="."]
+margin_left = 903.415
+margin_top = 611.252
+margin_right = 967.415
+margin_bottom = 675.252
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -6.0
+margin_top = -7.0
+margin_right = 1276.0
+margin_bottom = 726.0
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Overlay"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 250.48
+margin_top = 557.96
+margin_right = 765.48
+margin_bottom = 694.96
+rect_scale = Vector2( 1.32, 1.04 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Overlay"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 92.6404, 635.292 )
+scale = Vector2( 3.95739, 3.95739 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Overlay"]
+margin_left = 289.663
+margin_top = 589.26
+margin_right = 651.663
+margin_bottom = 652.26
+custom_fonts/font = SubResource( 1 )
+text = "Easy stuff!..."
+percent_visible = 0.0
+
+[node name="VictoryLabel" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 361.705
+margin_top = 255.647
+margin_right = 1000.71
+margin_bottom = 408.647
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.960784, 0.956863, 0.658824, 1 )
+text = "VICTORY!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/VictoryScreen = SubResource( 3 )
+
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="Button2" to="." method="_on_Button2_button_up"]
+[connection signal="button_up" from="Button3" to="." method="_on_Button3_button_up"]
+[connection signal="button_up" from="Button4" to="." method="_on_Button4_button_up"]
+[connection signal="button_up" from="Button5" to="." method="_on_Button5_button_up"]
