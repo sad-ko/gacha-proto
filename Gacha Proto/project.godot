@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Gacha Proto"
+config/name="Gacha Pull"
 run/main_scene="res://scenes/menu.tscn"
 config/icon="res://icon.png"
 
