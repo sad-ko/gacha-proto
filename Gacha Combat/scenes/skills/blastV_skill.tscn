@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/skills/BlastV.png" type="Texture" id=1]
+[ext_resource path="res://scripts/skills/blastV_skill.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="BlastV" type="Button"]
+anchor_right = 0.12
+anchor_bottom = 0.207
+margin_right = -140.4
+margin_bottom = -129.04
+custom_styles/focus = SubResource( 1 )
+icon = ExtResource( 1 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

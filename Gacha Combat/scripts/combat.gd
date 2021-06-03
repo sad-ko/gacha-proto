@@ -13,7 +13,8 @@ var current_turn : Node = null ### Works to save animation code ###
 var turn_ends : bool = false
 var selected_skills : int = 0
 var victory : bool = false
-
+var enemiesArray : Array
+var currentSkills : Array
 var tween : Node
 var timer : Node
 
@@ -52,7 +53,7 @@ func _process(_delta: float) -> void:
 func set_enemies_grid():
 	### Waits a second for enemies to load ###
 	yield(get_tree().create_timer(0.3), "timeout")
-	var enemiesArray = get_tree().get_nodes_in_group("Enemy")
+	enemiesArray = get_tree().get_nodes_in_group("Enemy")
 	if enemiesArray:
 		### Always selects the first node Area2D ###
 		current_target = enemiesArray[0].area

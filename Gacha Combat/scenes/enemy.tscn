@@ -17,7 +17,6 @@ script = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 shape = SubResource( 1 )
 
 [node name="EnemyHP" type="Label" parent="."]
@@ -35,3 +34,10 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Vertical" type="RayCast2D" parent="."]
+position = Vector2( 0, 42 )
+enabled = true
+cast_to = Vector2( 0, 200 )
+collide_with_areas = true
+collide_with_bodies = false

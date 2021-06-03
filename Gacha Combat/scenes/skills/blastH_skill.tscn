@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/skills/BlastH.png" type="Texture" id=1]
+[ext_resource path="res://scripts/skills/blastH_skill.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="BlastH" type="Button"]
+anchor_right = 0.12
+anchor_bottom = 0.203
+margin_right = -0.400009
+margin_bottom = -0.160004
+custom_styles/focus = SubResource( 1 )
+icon = ExtResource( 1 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

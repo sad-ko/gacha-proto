@@ -30,8 +30,12 @@ func _on_PlayerArea2D_area_entered(area: Area2D) -> void:
 		anim.play("SFX")
 		yield(get_tree().create_timer(0.9), "timeout")
 		$SFX.hide()
-	
-		Combat.current_target.get_parent().enemy_hp -= 5
+		
+		var skill = Combat.currentSkills.front()
+		skill.emit_signal("skill_effect")
+		Combat.currentSkills.remove(0)
+		
+		#Combat.current_target.get_parent().enemy_hp -= 5
 	
 		yield(get_tree().create_timer(0.5), "timeout")
 		Combat.tween.resume(Combat.current_turn)
