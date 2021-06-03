@@ -115,10 +115,10 @@ func reenable_ALL_skills():
 	skillArray.clear()
 	undoArray.clear()
 	setSkills.clear()
-	
-	var size = Combat.currentSkills.size()
-	if size:
-		for i in size:
-			Combat.currentSkills.remove(i)
+	Combat.currentSkills.clear()
+#	var size = Combat.currentSkills.size()
+#	if size:
+#		for i in size:
+#			Combat.currentSkills.remove(i)
 
 ############################### 	END 	####################################

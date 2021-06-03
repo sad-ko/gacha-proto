@@ -34,8 +34,6 @@ func detect_vertical():
 		yield(get_tree().create_timer(0.01), "timeout")
 		ally = vertical_sensor.get_collider()
 	vertical_sensor.enabled = false
-	print(self.name)
-	print("T %d" % allies_v)
 
 func dies():
 	queue_free()

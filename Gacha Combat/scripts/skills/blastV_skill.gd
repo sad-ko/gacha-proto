@@ -1,9 +1,11 @@
 extends Button
 
+# warning-ignore:unused_signal
 signal skill_effect
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	connect("skill_effect", self, "blastV_effect")
 
 func blastV_effect():
