@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 		first = 0
 
 func detect_vertical():
+	vertical_sensor.enabled = true
 	yield(get_tree().create_timer(0.5), "timeout")
 	var ally = vertical_sensor.get_collider()
 	while ally:
