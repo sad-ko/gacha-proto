@@ -2,30 +2,24 @@ extends Label
 
 const NUM_CHARS = 6
 
-#var Pull.roll = -1
 var sort = NUM_CHARS
 var loops = 1
-#var show_effect = 0.0
 
-#onready var num_pull_text = $NumPull
 onready var Pull = get_parent().get_node("Pull")
 
 func _ready():
 	randomize()
 	text = "" 
 	set_physics_process(false)
-	yield(get_tree().create_timer(0.5), "timeout")	#Waits for arrays to load
-	_pull()
+	set_process(false)
+#	yield(get_tree().create_timer(0.5), "timeout")	#Waits for arrays to load
+#	_pull()
 
 func _process(_delta):
-	if loops >= 4:	#It loops 3 times since loops starts at 1
+	if loops >= 8:	#It loops N-1 times since the loop starts at 1
 		set_physics_process(false)
 		text = "" + Pull.char_list[Pull.roll]
 		loops = 0
-
-	#if Pull.roll >= 0 and show_effect < 0.9 and loops == 0:
-	#	show_effect += 0.01
-	#	Pull.effect(show_effect, Pull.roll)
 
 func _physics_process(_delta):
 	#Fast speed sort text animation
@@ -61,14 +55,10 @@ func _chance(probability):
 func _effect():
 	#Sets everything for the effects to work
 	loops = 1
-	#if Pull.roll >= 0:
-		#show_effect = 0.0
-		#Pull.remove_effect(Pull.roll)
 	set_physics_process(true)
+	set_process(true)
 
-func _pull():
-#func _on_Button_pressed():
-	#num_pull_text.visible_characters = -1
+func pull():
 	if Stats.gems > 0:
 		Stats.num_pull += 1
 		Stats.pity += 1
@@ -77,10 +67,6 @@ func _pull():
 		_pity()
 		Pull.add_png(Pull.roll)
 		Stats.gems -= 10
-		#num_pull_text.text = "Num Pull.roll: " + "%d" % Stats.num_pull
-	#else:
-	#	num_pull_text.margin_left = 19
-	#	num_pull_text.text = "Not enough gems"
 
 func _on_Back_pressed():
 	var _err = get_tree().change_scene("res://scenes/menu.tscn")

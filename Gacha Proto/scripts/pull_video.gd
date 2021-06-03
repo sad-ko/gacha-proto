@@ -23,7 +23,7 @@ var array = Array()
 #var i = 0
 #var count = 0
 
-func _ready() -> void:	
+func _ready() -> void:
 	array.append(star1)
 	array.append(star2)
 	array.append(star3)
@@ -36,10 +36,11 @@ func _ready() -> void:
 	name_t.modulate.a = 0.0
 	overlay.hide()
 	back_button.hide()
-	yield(get_tree().create_timer(18.5), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	video.paused = true
 	overlay.show()
 	sfx.play()
+	name_t.pull()
 	$Timer.start()
 
 func _process(_delta: float) -> void:

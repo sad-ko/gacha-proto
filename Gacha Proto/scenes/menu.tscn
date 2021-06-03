@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/ja-jp.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menu.gd" type="Script" id=2]
 [ext_resource path="res://font.res" type="DynamicFont" id=3]
+[ext_resource path="res://shaders/crt_material.tres" type="Material" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -19,6 +20,17 @@ script = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.156863, 0.25098, 0.47451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VHS" type="ColorRect" parent="."]
+process_priority = -1
+visible = false
+material = ExtResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 6.10352e-05
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -42,6 +54,7 @@ __meta__ = {
 }
 
 [node name="Exit" type="Button" parent="."]
+process_priority = 1
 anchor_left = 0.498
 anchor_top = 0.92
 anchor_right = 0.5
