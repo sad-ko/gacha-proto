@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name character_base
 
 export (int) var speed = 300
 export (int) var jump_speed = -1600
@@ -7,15 +8,12 @@ export (int) var gravity = 2800
 var velocity = Vector2.ZERO
 var is_not_jumping : bool = true
 var is_not_falling : bool = true
-
+var mock : bool = false
 onready var anim = $AnimatedSprite
 
 func _ready() -> void:
 	anim.animation = "idle"
 	anim.play()
-
-func _process(_delta: float) -> void:
-	pass
 
 func _physics_process(delta: float) -> void:
 	char_input()
@@ -28,7 +26,7 @@ func _physics_process(delta: float) -> void:
 			anim.animation = "walk_right"
 		elif velocity.x <= -1:
 			anim.animation = "walk_left"
-		else: anim.animation = "idle"
+		elif not mock: anim.animation = "idle"
 	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
@@ -69,3 +67,6 @@ func flip_jump():
 func _on_AnimatedSprite_animation_finished() -> void:
 	if anim.animation == "pre_fall":
 		anim.animation = "falling"
+	if anim.animation == "mock":
+		mock = false
+		anim.animation = "idle"
