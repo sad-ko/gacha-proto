@@ -68,7 +68,7 @@ animations = [ {
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 44 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 55 ), ExtResource( 54 ) ],
-"loop": false,
+"loop": true,
 "name": "mock",
 "speed": 7.0
 }, {
@@ -123,14 +123,13 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -1, 0 )
+position = Vector2( -14, -4 )
 frames = SubResource( 2 )
-animation = "mock"
-frame = 13
-playing = true
+animation = "walk_right"
+frame = 10
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4096.0
 
 [node name="Label" type="Label" parent="."]
 margin_left = 23.9932
@@ -145,6 +144,11 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/mockText = SubResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -30, 0 )
+enabled = true
+cast_to = Vector2( -600, 0 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

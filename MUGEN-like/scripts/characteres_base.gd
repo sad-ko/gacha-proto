@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name character_base
 
-export (int) var speed = 300
+export (int) var speed = 200
 export (int) var jump_speed = -1600
 export (int) var gravity = 2800
 
@@ -9,7 +9,10 @@ var velocity = Vector2.ZERO
 var is_not_jumping : bool = true
 var is_not_falling : bool = true
 var mock : bool = false
+var previous_target_pos : int = 0
+
 onready var anim = $AnimatedSprite
+onready var target = $RayCast2D
 
 func _ready() -> void:
 	anim.animation = "idle"
@@ -21,13 +24,33 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	if is_not_jumping:
-		if velocity.x >= 1:
+	if is_not_jumping and not target.is_colliding():
+		if velocity.x > 0.5:
 			anim.animation = "walk_right"
-		elif velocity.x <= -1:
+		elif velocity.x < -0.5:
 			anim.animation = "walk_left"
 		elif not mock: anim.animation = "idle"
+	elif is_not_jumping and target.is_colliding():
+		var target_pos : int = target.get_collision_point().x - self.global_position.x
+		previous_target_pos = target_pos
+		if target_pos > 0.5 and velocity.x > 0.5:
+			anim.play("walk_right", false)
+		elif target_pos > 0.5 and velocity.x < -0.5:
+			anim.play("walk_right", true)
+		elif target_pos < -0.5 and velocity.x < -0.5:
+			anim.play("walk_left", false)
+		elif target_pos < -0.5 and velocity.x > 0.5:
+			anim.play("walk_left", true)
+		elif not mock: anim.animation = "idle"
 	
+	if not target.is_colliding():
+		if previous_target_pos > 0:
+			target.cast_to *= -1
+			target.position.x *= -1
+		elif previous_target_pos < 0:
+			target.cast_to *= -1
+			target.position.x *= -1
+		
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
@@ -48,8 +71,6 @@ func _physics_process(delta: float) -> void:
 		anim.flip_h = false
 		is_not_jumping = true
 		is_not_falling = true
-		
-	#print(velocity.y)##Remove##
 
 func char_input():
 	velocity.x = 0

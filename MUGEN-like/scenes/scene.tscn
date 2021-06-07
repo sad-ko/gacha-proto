@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/characteres_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 740.429, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 29.9835, 31.9932 )
 
 [node name="Scene" type="Node2D"]
 
@@ -28,3 +32,13 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D"]
 position = Vector2( 751.391, 10.7401 )
 shape = SubResource( 1 )
+
+[node name="Dummy" type="Sprite" parent="."]
+position = Vector2( 564.437, 568.4 )
+scale = Vector2( 1, 1.76251 )
+texture = ExtResource( 2 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="Dummy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/KinematicBody2D"]
+shape = SubResource( 2 )
