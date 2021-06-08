@@ -1,7 +1,6 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://scripts/characteres_combat.gd" type="Script" id=1]
-[ext_resource path="res://resources/chara_pngs/homura_char/Homura_0.png" type="Texture" id=2]
 [ext_resource path="res://resources/chara_pngs/homura_char/idle/idle_1.png" type="Texture" id=3]
 [ext_resource path="res://resources/chara_pngs/homura_char/idle/idle_0.png" type="Texture" id=4]
 [ext_resource path="res://resources/chara_pngs/homura_char/idle/idle_3.png" type="Texture" id=5]
@@ -55,6 +54,56 @@
 [ext_resource path="res://resources/chara_pngs/homura_char/mock/mock_10.png" type="Texture" id=53]
 [ext_resource path="res://resources/chara_pngs/homura_char/mock/mock_13.png" type="Texture" id=54]
 [ext_resource path="res://resources/chara_pngs/homura_char/mock/mock_12.png" type="Texture" id=55]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-25.png" type="Texture" id=56]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-32.png" type="Texture" id=57]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-22.png" type="Texture" id=58]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-1.png" type="Texture" id=59]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-3.png" type="Texture" id=60]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-31.png" type="Texture" id=61]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-8.png" type="Texture" id=62]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-38.png" type="Texture" id=63]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-9.png" type="Texture" id=64]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-5.png" type="Texture" id=65]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-29.png" type="Texture" id=66]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-24.png" type="Texture" id=67]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-36.png" type="Texture" id=68]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-30.png" type="Texture" id=69]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-16.png" type="Texture" id=70]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-12.png" type="Texture" id=71]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-6.png" type="Texture" id=72]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-10.png" type="Texture" id=73]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-28.png" type="Texture" id=74]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-27.png" type="Texture" id=75]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-4.png" type="Texture" id=76]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-23.png" type="Texture" id=77]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-7.png" type="Texture" id=78]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-34.png" type="Texture" id=79]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-35.png" type="Texture" id=80]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-2.png" type="Texture" id=81]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-26.png" type="Texture" id=82]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-20.png" type="Texture" id=83]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-21.png" type="Texture" id=84]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-33.png" type="Texture" id=85]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-17.png" type="Texture" id=86]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-19.png" type="Texture" id=87]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-15.png" type="Texture" id=88]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-11.png" type="Texture" id=89]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-14.png" type="Texture" id=90]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-37.png" type="Texture" id=91]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-18.png" type="Texture" id=92]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-0.png" type="Texture" id=93]
+[ext_resource path="res://resources/chara_pngs/homura_char/intro/intro-13.png" type="Texture" id=94]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-5.png" type="Texture" id=95]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-2.png" type="Texture" id=96]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-3.png" type="Texture" id=97]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-4.png" type="Texture" id=98]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-1.png" type="Texture" id=99]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-0.png" type="Texture" id=100]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-7.png" type="Texture" id=101]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-8.png" type="Texture" id=102]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-6.png" type="Texture" id=103]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-9.png" type="Texture" id=104]
+[ext_resource path="res://resources/chara_pngs/homura_char/jump_forward/jump_forward-10.png" type="Texture" id=105]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.5492
@@ -67,9 +116,19 @@ animations = [ {
 "name": "idle",
 "speed": 7.0
 }, {
+"frames": [ ExtResource( 93 ), ExtResource( 59 ), ExtResource( 81 ), ExtResource( 60 ), ExtResource( 76 ), ExtResource( 65 ), ExtResource( 72 ), ExtResource( 78 ), ExtResource( 62 ), ExtResource( 64 ), ExtResource( 73 ), ExtResource( 89 ), ExtResource( 71 ), ExtResource( 94 ), ExtResource( 90 ), ExtResource( 88 ), ExtResource( 70 ), ExtResource( 86 ), ExtResource( 92 ), ExtResource( 87 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 58 ), ExtResource( 77 ), ExtResource( 67 ), ExtResource( 56 ), ExtResource( 82 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 66 ), ExtResource( 69 ), ExtResource( 61 ), ExtResource( 57 ), ExtResource( 85 ), ExtResource( 79 ), ExtResource( 80 ), ExtResource( 68 ), ExtResource( 91 ), ExtResource( 63 ) ],
+"loop": false,
+"name": "intro",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 44 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 55 ), ExtResource( 54 ) ],
 "loop": true,
 "name": "mock",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 100 ), ExtResource( 99 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 95 ), ExtResource( 103 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 104 ), ExtResource( 105 ) ],
+"loop": true,
+"name": "jump_forwards",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
@@ -115,21 +174,17 @@ tracks/0/keys = {
 [node name="Character" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 2 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -14, -4 )
+position = Vector2( -13, -4 )
 frames = SubResource( 2 )
-animation = "walk_right"
-frame = 10
+animation = "idle"
+frame = 1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4096.0
+wait_time = 7.0
 
 [node name="Label" type="Label" parent="."]
 margin_left = 23.9932

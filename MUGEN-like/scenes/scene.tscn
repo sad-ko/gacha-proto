@@ -12,7 +12,7 @@ extents = Vector2( 29.9835, 31.9932 )
 [node name="Scene" type="Node2D"]
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 739.634, 401.637 )
+position = Vector2( 763.627, 568.4 )
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 visible = false
@@ -42,3 +42,4 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/KinematicBody2D"]
 shape = SubResource( 2 )
+disabled = true

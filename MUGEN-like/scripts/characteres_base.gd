@@ -9,21 +9,46 @@ var velocity = Vector2.ZERO
 var is_not_jumping : bool = true
 var is_not_falling : bool = true
 var mock : bool = false
+var intro : bool = false
 var previous_target_pos : int = 0
 
 onready var anim = $AnimatedSprite
 onready var target = $RayCast2D
 
 func _ready() -> void:
-	anim.animation = "idle"
+	#anim.animation = "intro"
 	anim.play()
 
 func _physics_process(delta: float) -> void:
-	char_input()
+	if not intro:
+		char_input()
+		movement_animation()
+		jumping_animation()
+	else: velocity.x = 0
 	
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
+	if not target.is_colliding():
+		if previous_target_pos > 0:
+			target.cast_to *= -1
+			target.position.x *= -1
+		elif previous_target_pos < 0:
+			target.cast_to *= -1
+			target.position.x *= -1
+	
+	if Input.is_action_just_pressed("jump") and not intro:
+		if is_on_floor():
+			velocity.y = jump_speed
+
+func char_input():
+	velocity.x = 0
+	if Input.is_action_pressed("walk_right"):
+		velocity.x += speed
+	if Input.is_action_pressed("walk_left"):
+		velocity.x -= speed
+
+func movement_animation():
 	if is_not_jumping and not target.is_colliding():
 		if velocity.x > 0.5:
 			anim.animation = "walk_right"
@@ -42,26 +67,15 @@ func _physics_process(delta: float) -> void:
 		elif target_pos < -0.5 and velocity.x > 0.5:
 			anim.play("walk_left", true)
 		elif not mock: anim.animation = "idle"
-	
-	if not target.is_colliding():
-		if previous_target_pos > 0:
-			target.cast_to *= -1
-			target.position.x *= -1
-		elif previous_target_pos < 0:
-			target.cast_to *= -1
-			target.position.x *= -1
-		
-	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = jump_speed
-	
+
+func jumping_animation():
 	if is_not_jumping and not is_on_floor():
 		if velocity.y < -1:
 			flip_jump()
 			anim.animation = "jump"
 			is_not_jumping = false
 	
-	if is_not_falling and not is_on_floor():
+	if is_not_falling and not is_on_floor() and not intro:
 		if velocity.y > 0:
 			flip_jump()
 			anim.animation = "pre_fall"
@@ -72,13 +86,6 @@ func _physics_process(delta: float) -> void:
 		is_not_jumping = true
 		is_not_falling = true
 
-func char_input():
-	velocity.x = 0
-	if Input.is_action_pressed("walk_right"):
-		velocity.x += speed
-	if Input.is_action_pressed("walk_left"):
-		velocity.x -= speed
-
 func flip_jump():
 	if velocity.x >= 1:
 		anim.flip_h = false
@@ -88,6 +95,8 @@ func flip_jump():
 func _on_AnimatedSprite_animation_finished() -> void:
 	if anim.animation == "pre_fall":
 		anim.animation = "falling"
-	if anim.animation == "mock":
+	
+	if anim.animation == "mock" or anim.animation == "intro":
 		mock = false
+		intro = false
 		anim.animation = "idle"
