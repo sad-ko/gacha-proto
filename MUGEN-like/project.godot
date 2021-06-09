@@ -9,13 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://scripts/states/states.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scripts/character_StateMachine.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "character_base",
 "language": "GDScript",
-"path": "res://scripts/characteres_base.gd"
+"path": "res://scripts/character_base.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "character_base_bak",
+"language": "GDScript",
+"path": "res://scripts/characteres_base-bak.gd"
 } ]
 _global_script_class_icons={
-"character_base": ""
+"State": "",
+"StateMachine": "",
+"character_base": "",
+"character_base_bak": ""
 }
 
 [application]
@@ -23,10 +41,6 @@ _global_script_class_icons={
 config/name="MUGEN-like"
 run/main_scene="res://scenes/scene.tscn"
 config/icon="res://icon.png"
-
-[debug]
-
-settings/fps/force_fps=30
 
 [display]
 

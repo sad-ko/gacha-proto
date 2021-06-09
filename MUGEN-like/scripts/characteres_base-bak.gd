@@ -1,5 +1,5 @@
 extends KinematicBody2D
-class_name character_base
+class_name character_base_bak
 
 export (int) var speed = 200
 export (int) var jump_speed = -1600

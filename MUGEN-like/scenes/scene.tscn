@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/characteres_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -13,9 +13,6 @@ extents = Vector2( 29.9835, 31.9932 )
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
 position = Vector2( 763.627, 568.4 )
-
-[node name="Camera2D" type="Camera2D" parent="Character"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -112.0
@@ -42,4 +39,8 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dummy/KinematicBody2D"]
 shape = SubResource( 2 )
-disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 595.628, 457.078 )
+current = true
+zoom = Vector2( 0.6, 0.6 )
