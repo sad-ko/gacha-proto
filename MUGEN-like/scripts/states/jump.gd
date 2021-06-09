@@ -9,7 +9,9 @@ func enter(msg := {}) -> void:
 
 func physics_update(delta: float) -> void:
 	# Horizontal movement.
-	var input_direction_x: float = character.char_input(delta)
+	var input_direction_x: float
+	if not character.animController.animation == "landing":
+		input_direction_x = character.char_input(delta)
 	jumping_direction(character.velocity)
 	
 	# Landing.

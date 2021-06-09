@@ -12,7 +12,6 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Jump", {do_jump = true})
 	elif is_equal_approx(input_direction_x, 0.0):
-	#elif input_direction_x < 0.02 or input_direction_x > -0.02:
 		state_machine.transition_to("Idle")
 
 func walking_direction(facing):
