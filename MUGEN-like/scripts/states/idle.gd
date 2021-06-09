@@ -12,9 +12,20 @@ func physics_update(_delta) -> void:
 		state_machine.transition_to("Jump")
 		return
 	
-	if Input.is_action_just_pressed("jump"):
-		# As we'll only have one air state for both jump and fall, we use the `msg` dictionary 
-		# to tell the next state that we want to jump.
-		state_machine.transition_to("Jump", {do_jump = true})
+	if jumping_direction():
+		pass
 	elif Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 		state_machine.transition_to("Walk")
+
+func jumping_direction() -> int:
+	var jumped : int = 1
+	
+	if Input.is_action_pressed("walk_right") and Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Jump", {do_jump_forward = true})
+	elif Input.is_action_pressed("walk_left") and Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Jump", {do_jump_backward = true})
+	elif Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Jump", {do_jump = true})
+	else: jumped = 0
+	
+	return jumped
