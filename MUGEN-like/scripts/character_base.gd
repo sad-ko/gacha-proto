@@ -36,7 +36,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
-
 func _on_AnimatedSprite_animation_finished() -> void:
 	match (animController.animation):
 		"jump":
@@ -45,3 +44,5 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			animController.animation = "jump_forwards_loop"
 		"jump_backwards":
 			animController.animation = "jump_backwards_loop"
+		"landing":
+			$CSM/Jump.emit_signal("landing_finished")
