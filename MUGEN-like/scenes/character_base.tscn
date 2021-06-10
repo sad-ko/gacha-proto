@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=2]
+[gd_scene load_steps=146 format=2]
 
 [ext_resource path="res://scripts/character_base.gd" type="Script" id=1]
 [ext_resource path="res://scripts/character_StateMachine.gd" type="Script" id=2]
@@ -127,6 +127,21 @@
 [ext_resource path="res://resources/chara_pngs/homura_char/landing/landing_4.png" type="Texture" id=125]
 [ext_resource path="res://resources/chara_pngs/homura_char/landing/landing_2.png" type="Texture" id=126]
 [ext_resource path="res://resources/chara_pngs/homura_char/landing/landing_3.png" type="Texture" id=127]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_turning/crouch_turning_0.png" type="Texture" id=128]
+[ext_resource path="res://resources/chara_pngs/homura_char/stand_to_crouch/stand_to_crouch_0.png" type="Texture" id=129]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_to_stand/crouch_to_stand_2.png" type="Texture" id=130]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_turning/crouch_turning_1.png" type="Texture" id=131]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_turning/crouch_turning_2.png" type="Texture" id=132]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_to_stand/crouch_to_stand_0.png" type="Texture" id=133]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_to_stand/crouch_to_stand_1.png" type="Texture" id=134]
+[ext_resource path="res://resources/chara_pngs/homura_char/stand_to_crouch/stand_to_crouch_2.png" type="Texture" id=135]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouching/crouching_1.png" type="Texture" id=136]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouching/crouching_0.png" type="Texture" id=137]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouching/crouching_2.png" type="Texture" id=138]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouching/crouching_3.png" type="Texture" id=139]
+[ext_resource path="res://resources/chara_pngs/homura_char/stand_to_crouch/stand_to_crouch_1.png" type="Texture" id=140]
+[ext_resource path="res://resources/chara_pngs/homura_char/crouch_turning/crouch_turning_3.png" type="Texture" id=141]
+[ext_resource path="res://scripts/states/crouch.gd" type="Script" id=142]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.5492
@@ -193,6 +208,26 @@ animations = [ {
 "loop": true,
 "name": "jump_backwards_loop",
 "speed": 9.0
+}, {
+"frames": [ ExtResource( 129 ), ExtResource( 140 ), ExtResource( 135 ) ],
+"loop": false,
+"name": "stand_to_crouch",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 137 ), ExtResource( 136 ), ExtResource( 138 ), ExtResource( 139 ) ],
+"loop": true,
+"name": "crouching",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 133 ), ExtResource( 134 ), ExtResource( 130 ) ],
+"loop": false,
+"name": "crouch_to_stand",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 128 ), ExtResource( 131 ), ExtResource( 132 ), ExtResource( 141 ) ],
+"loop": false,
+"name": "crouch_turning",
+"speed": 18.0
 } ]
 
 [sub_resource type="Animation" id=3]
@@ -218,7 +253,9 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "idle"
+animation = "stand_to_crouch"
+frame = 2
+playing = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
@@ -250,9 +287,10 @@ script = ExtResource( 107 )
 [node name="Jump" type="Node" parent="CSM"]
 script = ExtResource( 108 )
 
-[node name="backup" type="Node" parent="."]
+[node name="Crouch" type="Node" parent="CSM"]
+script = ExtResource( 142 )
 
-[node name="Crouch" type="Node" parent="backup"]
+[node name="backup" type="Node" parent="."]
 
 [node name="Attack" type="Node" parent="backup"]
 

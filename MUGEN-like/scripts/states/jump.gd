@@ -46,6 +46,8 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			state_machine.transition_to("Walk")
 		elif doubleJump(): pass
+		elif Input.is_action_pressed("crouch"):
+			state_machine.transition_to("Crouch")
 
 
 func doubleJump() -> int:

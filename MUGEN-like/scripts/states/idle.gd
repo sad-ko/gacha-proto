@@ -16,6 +16,8 @@ func physics_update(_delta) -> void:
 		pass
 	elif Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 		state_machine.transition_to("Walk")
+	elif Input.is_action_pressed("crouch"):
+		state_machine.transition_to("Crouch")
 
 func jumping_direction() -> int:
 	var jumped : int = 1

@@ -13,6 +13,8 @@ func physics_update(delta: float) -> void:
 		pass
 	elif is_equal_approx(input_direction_x, 0.0):
 		state_machine.transition_to("Idle")
+	elif Input.is_action_pressed("crouch"):
+		state_machine.transition_to("Crouch")
 
 func walking_direction(facing):
 	if facing > 0:
@@ -20,6 +22,7 @@ func walking_direction(facing):
 	elif facing < 0:
 		character.animController.animation = "walk_left"
 
+# Yeah yeah i know, repeated code shut up
 func jumping_direction() -> int:
 	var jumped : int = 1
 	

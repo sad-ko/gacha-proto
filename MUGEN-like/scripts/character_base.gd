@@ -46,3 +46,9 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			animController.animation = "jump_backwards_loop"
 		"landing":
 			$CSM/Jump.emit_signal("landing_finished")
+		"stand_to_crouch":
+			animController.animation = "crouching"
+		"crouch_turning":
+			animController.animation = "crouching"
+		"crouch_to_stand":
+			$CSM/Crouch.emit_signal("standing")
