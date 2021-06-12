@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=2]
+[gd_scene load_steps=150 format=2]
 
 [ext_resource path="res://scripts/character_base.gd" type="Script" id=1]
 [ext_resource path="res://scripts/character_StateMachine.gd" type="Script" id=2]
@@ -142,6 +142,10 @@
 [ext_resource path="res://resources/chara_pngs/homura_char/stand_to_crouch/stand_to_crouch_1.png" type="Texture" id=140]
 [ext_resource path="res://resources/chara_pngs/homura_char/crouch_turning/crouch_turning_3.png" type="Texture" id=141]
 [ext_resource path="res://scripts/states/crouch.gd" type="Script" id=142]
+[ext_resource path="res://resources/chara_pngs/homura_char/hop_backwards/hop_backwards0.png" type="Texture" id=143]
+[ext_resource path="res://resources/chara_pngs/homura_char/hop_backwards/hop_backwards1.png" type="Texture" id=144]
+[ext_resource path="res://resources/chara_pngs/homura_char/stagger/stagger_0.png" type="Texture" id=145]
+[ext_resource path="res://scripts/states/stagger.gd" type="Script" id=146]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.5492
@@ -153,6 +157,16 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 9.0
+}, {
+"frames": [ ExtResource( 137 ), ExtResource( 136 ), ExtResource( 138 ), ExtResource( 139 ) ],
+"loop": true,
+"name": "crouching",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 145 ) ],
+"loop": true,
+"name": "stagger",
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 93 ), ExtResource( 59 ), ExtResource( 81 ), ExtResource( 60 ), ExtResource( 76 ), ExtResource( 65 ), ExtResource( 72 ), ExtResource( 78 ), ExtResource( 62 ), ExtResource( 64 ), ExtResource( 73 ), ExtResource( 89 ), ExtResource( 71 ), ExtResource( 94 ), ExtResource( 90 ), ExtResource( 88 ), ExtResource( 70 ), ExtResource( 86 ), ExtResource( 92 ), ExtResource( 87 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 58 ), ExtResource( 77 ), ExtResource( 67 ), ExtResource( 56 ), ExtResource( 82 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 66 ), ExtResource( 69 ), ExtResource( 61 ), ExtResource( 57 ), ExtResource( 85 ), ExtResource( 79 ), ExtResource( 80 ), ExtResource( 68 ), ExtResource( 91 ), ExtResource( 63 ) ],
 "loop": false,
@@ -214,11 +228,6 @@ animations = [ {
 "name": "stand_to_crouch",
 "speed": 18.0
 }, {
-"frames": [ ExtResource( 137 ), ExtResource( 136 ), ExtResource( 138 ), ExtResource( 139 ) ],
-"loop": true,
-"name": "crouching",
-"speed": 9.0
-}, {
 "frames": [ ExtResource( 133 ), ExtResource( 134 ), ExtResource( 130 ) ],
 "loop": false,
 "name": "crouch_to_stand",
@@ -228,6 +237,11 @@ animations = [ {
 "loop": false,
 "name": "crouch_turning",
 "speed": 18.0
+}, {
+"frames": [ ExtResource( 143 ), ExtResource( 144 ) ],
+"loop": true,
+"name": "hop",
+"speed": 9.0
 } ]
 
 [sub_resource type="Animation" id=3]
@@ -253,9 +267,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "stand_to_crouch"
-frame = 2
-playing = true
+animation = "stagger"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
@@ -290,6 +302,9 @@ script = ExtResource( 108 )
 [node name="Crouch" type="Node" parent="CSM"]
 script = ExtResource( 142 )
 
+[node name="Stagger" type="Node" parent="CSM"]
+script = ExtResource( 146 )
+
 [node name="backup" type="Node" parent="."]
 
 [node name="Attack" type="Node" parent="backup"]
@@ -297,8 +312,6 @@ script = ExtResource( 142 )
 [node name="Guard" type="Node" parent="backup"]
 
 [node name="Charge" type="Node" parent="backup"]
-
-[node name="Hit" type="Node" parent="backup"]
 
 [node name="Knockback" type="Node" parent="backup"]
 

@@ -1,6 +1,7 @@
 # walk.gd
 extends State
 
+
 func physics_update(delta: float) -> void:
 	if not character.is_on_floor():
 		state_machine.transition_to("Jump")
@@ -15,23 +16,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Idle")
 	elif Input.is_action_pressed("crouch"):
 		state_machine.transition_to("Crouch")
+	elif Input.is_action_just_pressed("stagger"):
+		state_machine.transition_to("Stagger")
 
 func walking_direction(facing):
 	if facing > 0:
 		character.animController.animation = "walk_right"
 	elif facing < 0:
 		character.animController.animation = "walk_left"
-
-# Yeah yeah i know, repeated code shut up
-func jumping_direction() -> int:
-	var jumped : int = 1
-	
-	if Input.is_action_pressed("walk_right") and Input.is_action_just_pressed("jump"):
-		state_machine.transition_to("Jump", {do_jump_forward = true})
-	elif Input.is_action_pressed("walk_left") and Input.is_action_just_pressed("jump"):
-		state_machine.transition_to("Jump", {do_jump_backward = true})
-	elif Input.is_action_just_pressed("jump"):
-		state_machine.transition_to("Jump", {do_jump = true})
-	else: jumped = 0
-	
-	return jumped

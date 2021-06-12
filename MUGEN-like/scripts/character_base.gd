@@ -27,10 +27,13 @@ func char_input(delta) -> float:
 	
 	return velocity.x
 
+
 func motion(delta):
 	velocity.y += gravity * delta
 	# warning-ignore:return_value_discarded
 	move_and_slide(velocity, Vector2.UP, true)
+
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -52,3 +55,5 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			animController.animation = "crouching"
 		"crouch_to_stand":
 			$CSM/Crouch.emit_signal("standing")
+		"stagger":
+			$CSM/Stagger.emit_signal("recover")

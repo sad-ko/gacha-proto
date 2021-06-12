@@ -35,7 +35,7 @@ func physics_update(delta: float) -> void:
 	
 	#Dobule Jump
 	if double_jump and not character.is_on_floor():
-		if doubleJump():
+		if jumping_direction():
 			double_jump = false
 	
 	# Landing.
@@ -45,24 +45,12 @@ func physics_update(delta: float) -> void:
 		
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):
 			state_machine.transition_to("Walk")
-		elif doubleJump(): pass
+		elif jumping_direction(): pass
 		elif Input.is_action_pressed("crouch"):
 			state_machine.transition_to("Crouch")
-
-
-func doubleJump() -> int:
-	var jumped : int = 1
 	
-	if Input.is_action_pressed("walk_right") and Input.is_action_just_pressed("jump"):
-		state_machine.transition_to("Jump", {do_jump_forward = true})
-	elif Input.is_action_pressed("walk_left") and Input.is_action_just_pressed("jump"):
-		state_machine.transition_to("Jump", {do_jump_backward = true})
-	elif Input.is_action_just_pressed("jump"):
-		state_machine.transition_to("Jump", {do_jump = true})
-	else: jumped = 0
-	
-	return jumped
-
+	if Input.is_action_just_pressed("stagger"):
+		state_machine.transition_to("Stagger")
 
 func transition_afterLanding():
 	state_machine.transition_to("Idle")

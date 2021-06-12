@@ -43,3 +43,19 @@ func enter(_msg := {}) -> void:
 # to clean up the state.
 func exit() -> void:
 	pass
+
+
+# Controls the direction that the jump is about to realize, since is needed by various states
+# it's added as a primitive function.
+func jumping_direction() -> int:
+	var jumped : int = 1
+	
+	if Input.is_action_pressed("walk_right") and Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Jump", {do_jump_forward = true})
+	elif Input.is_action_pressed("walk_left") and Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Jump", {do_jump_backward = true})
+	elif Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Jump", {do_jump = true})
+	else: jumped = 0
+	
+	return jumped
