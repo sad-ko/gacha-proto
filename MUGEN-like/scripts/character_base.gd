@@ -8,11 +8,16 @@ export (int) var jump_power = 1000
 var velocity = Vector2()
 
 onready var animController = $AnimatedSprite
+onready var floorShadow = $FloorShadow
 
 func _ready() -> void:
 	#Engine.time_scale = 0.5
 	animController.play()
 
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		floorShadow.hide()
+	else: floorShadow.show()
 
 func char_input(delta) -> float:
 	velocity.x = 0

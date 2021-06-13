@@ -1,5 +1,6 @@
 extends State
 
+# warning-ignore:unused_signal
 signal recover
 
 func enter(_msg := {}) -> void:
