@@ -22,5 +22,7 @@ func physics_update(delta: float) -> void:
 func walking_direction(facing):
 	if facing > 0:
 		character.animController.animation = "walk_right"
+		character.animShadow.animation = "walk_right"
 	elif facing < 0:
 		character.animController.animation = "walk_left"
+		character.animShadow.animation = "walk_left"

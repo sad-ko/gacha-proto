@@ -4,6 +4,7 @@ extends State
 func enter(_msg := {}) -> void:
 	character.velocity = Vector2.ZERO
 	character.animController.animation = "idle"
+	character.animShadow.animation = "idle"
 
 func physics_update(_delta) -> void:
 	# If you have platforms that break when standing on them, you need that check for 

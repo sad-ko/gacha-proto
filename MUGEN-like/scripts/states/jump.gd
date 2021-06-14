@@ -16,16 +16,20 @@ func enter(msg := {}) -> void:
 	double_jump = true
 	character.velocity.x = 0
 	character.animController.frame = 0
+	character.animShadow.frame = 0
 	
 	if msg.has("do_jump"):
 		character.animController.animation = "jump"
+		character.animShadow.animation = "jump"
 		character.velocity.y = -character.jump_power
 	elif msg.has("do_jump_forward"):
 		character.animController.animation = "jump_forwards"
+		character.animShadow.animation = "jump_forwards"
 		character.velocity.y = -character.jump_power
 		character.velocity.x += (1 * character.speed) * 2
 	elif msg.has("do_jump_backward"):
 		character.animController.animation = "jump_backwards"
+		character.animShadow.animation = "jump_backwards"
 		character.velocity.y = -character.jump_power
 		character.velocity.x -= (1 * character.speed) * 2
 	
@@ -41,6 +45,7 @@ func physics_update(delta: float) -> void:
 	# Landing.
 	if character.is_on_floor():
 		character.animController.animation = "landing"
+		character.animShadow.animation = "landing"
 		character.velocity.x = 0
 		
 		if Input.is_action_pressed("walk_left") or Input.is_action_pressed("walk_right"):

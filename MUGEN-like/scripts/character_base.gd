@@ -6,18 +6,24 @@ export (int) var gravity = 3200
 export (int) var jump_power = 1000
 
 var velocity = Vector2()
+var height : float = 0.0
 
 onready var animController = $AnimatedSprite
-onready var floorShadow = $FloorShadow
+onready var animShadow = $CanvasLayer/Shadow
+onready var canvas = $CanvasLayer
 
 func _ready() -> void:
-	#Engine.time_scale = 0.5
 	animController.play()
+	#canvas.offset = self.position
 
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		floorShadow.hide()
-	else: floorShadow.show()
+func _process(_delta: float) -> void:
+	canvas.offset.x = self.position.x
+	if velocity.y < 0:
+		canvas.offset.y += 1.5
+	elif not is_on_floor() and velocity.y > 0: 
+		canvas.offset.y -= 1.5
+	else: canvas.offset.y = self.position.y
+
 
 func char_input(delta) -> float:
 	velocity.x = 0
@@ -48,16 +54,21 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	match (animController.animation):
 		"jump":
 			animController.animation = "jump_loop"
+			animShadow.animation = "jump_loop"
 		"jump_forwards":
 			animController.animation = "jump_forwards_loop"
+			animShadow.animation = "jump_forwards_loop"
 		"jump_backwards":
 			animController.animation = "jump_backwards_loop"
+			animShadow.animation = "jump_backwards_loop"
 		"landing":
 			$CSM/Jump.emit_signal("landing_finished")
 		"stand_to_crouch":
 			animController.animation = "crouching"
+			animShadow.animation = "crouching"
 		"crouch_turning":
 			animController.animation = "crouching"
+			animShadow.animation = "crouching"
 		"crouch_to_stand":
 			$CSM/Crouch.emit_signal("standing")
 		"stagger":

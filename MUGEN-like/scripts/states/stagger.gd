@@ -5,6 +5,7 @@ signal recover
 
 func enter(_msg := {}) -> void:
 	character.animController.animation = "stagger"
+	character.animShadow.animation = "stagger"
 	if not is_connected("recover", self, "transition_afterRecover"):
 		# warning-ignore:return_value_discarded
 		connect("recover", self, "transition_afterRecover")

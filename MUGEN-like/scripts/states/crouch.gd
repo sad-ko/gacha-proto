@@ -15,20 +15,26 @@ func enter(_msg := {}) -> void:
 	crouching = true
 	character.velocity = Vector2.ZERO
 	character.animController.animation = "stand_to_crouch"
+	character.animShadow.animation = "stand_to_crouch"
 
 func physics_update(_delta) -> void:
 	# Extra if needed to avoid getting stuck on the crouch state
 	if crouching:
 		if Input.is_action_just_released("crouch"):
 			character.animController.animation = "crouch_to_stand"
+			character.animShadow.animation = "crouch_to_stand"
 			crouching = false
 		elif Input.is_action_pressed("walk_left") and not turned:
 			character.animController.flip_h = true
 			character.animController.animation = "crouch_turning"
+			character.animShadow.flip_h = true
+			character.animShadow.animation = "crouch_turning"
 			turned = true
 		elif Input.is_action_pressed("walk_right") and turned:
 			character.animController.flip_h = false
 			character.animController.animation = "crouch_turning"
+			character.animShadow.flip_h = false
+			character.animShadow.animation = "crouch_turning"
 			turned = false
 
 func transition_afterStanding():
@@ -36,3 +42,4 @@ func transition_afterStanding():
 
 func exit() -> void:
 	character.animController.flip_h = false
+	character.animShadow.flip_h = false

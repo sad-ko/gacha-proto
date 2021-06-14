@@ -39,12 +39,14 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D"]
 position = Vector2( 751.391, 10.7401 )
 shape = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ColorRect"]
+visible = false
 occluder = SubResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -91,7 +93,7 @@ anchor_mode = 0
 current = true
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 763.627, 568.4 )
+position = Vector2( 763.627, 576.4 )
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 position = Vector2( 0, -60 )

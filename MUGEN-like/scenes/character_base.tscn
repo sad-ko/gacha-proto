@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://scripts/character_base.gd" type="Script" id=1]
 [ext_resource path="res://scripts/character_StateMachine.gd" type="Script" id=2]
@@ -147,19 +147,23 @@
 [ext_resource path="res://resources/chara_pngs/homura_char/stagger/stagger_0.png" type="Texture" id=145]
 [ext_resource path="res://scripts/states/stagger.gd" type="Script" id=146]
 
-[sub_resource type="OccluderPolygon2D" id=4]
-cull_mode = 2
-polygon = PoolVector2Array( -13.4897, 59.6841, -4.50995, 59.7543, -3.66809, 58.3513, -3.59796, 54.3525, -8.36841, 52.8091, -11.5955, 55.7556, -13.7703, 57.4392 )
+[sub_resource type="OccluderPolygon2D" id=1]
+closed = false
+polygon = PoolVector2Array( 11.3497, -18.5983, 9.86317, -13.5442, 10.4578, 2.51009, 22.7958, 13.9562, 16.2551, 23.1726, 10.9658, 59.4489, 13.6832, 63.1571, 14.174, 67.4705 )
 
-[sub_resource type="OccluderPolygon2D" id=5]
+[sub_resource type="OccluderPolygon2D" id=2]
+cull_mode = 2
+polygon = PoolVector2Array( -13.1013, 59.3379, -7.66997, 59.3379, -5.79709, 58.5888, -5.23522, 54.843, -8.7937, 54.843, -11.603, 56.3413, -13.6632, 58.0269 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
 cull_mode = 2
 polygon = PoolVector2Array( 12.327, 53.3703, 12.1165, 58.6318, 13.239, 59.8245, 19.1319, 60.1051, 19.7633, 58.7722, 18.6408, 55.8257, 17.799, 53.5807 )
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 15.5492
 height = 66.3471
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
@@ -252,8 +256,21 @@ animations = [ {
 "speed": 9.0
 } ]
 
-[sub_resource type="Animation" id=3]
-resource_name = "mockText"
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+render_mode blend_mix;
+uniform vec4 modulate: hint_color;
+
+void fragment() {
+	COLOR = vec4(modulate.rgb, texture(TEXTURE, UV).a * modulate.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/modulate = Color( 0, 0, 0, 0.588235 )
+
+[sub_resource type="Animation" id=8]
 length = 1.2
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Label:visible_characters")
@@ -269,22 +286,50 @@ tracks/0/keys = {
 [node name="Character" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
+[node name="AirShadow" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2( -2, 0 )
+occluder = SubResource( 1 )
+
 [node name="FloorShadow" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="FloorShadow"]
-occluder = SubResource( 4 )
+position = Vector2( 0.93644, 0.749153 )
+occluder = SubResource( 2 )
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="FloorShadow"]
-occluder = SubResource( 5 )
+occluder = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2, 7 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+position = Vector2( 0, -0.0883865 )
+frames = SubResource( 5 )
 animation = "idle"
+frame = 1
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Shadow" type="AnimatedSprite" parent="CanvasLayer"]
+material = SubResource( 7 )
+frames = SubResource( 5 )
+animation = "idle"
+frame = 1
+playing = true
+offset = Vector2( 0, 118 )
+flip_v = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
@@ -301,7 +346,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/mockText = SubResource( 3 )
+anims/mockText = SubResource( 8 )
 
 [node name="CSM" type="Node" parent="."]
 script = ExtResource( 2 )
