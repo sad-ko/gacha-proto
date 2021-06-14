@@ -310,7 +310,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, -0.0883865 )
 frames = SubResource( 5 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -323,7 +323,7 @@ follow_viewport_enable = true
 material = SubResource( 7 )
 frames = SubResource( 5 )
 animation = "idle"
-frame = 1
+frame = 2
 playing = true
 offset = Vector2( 0, 118 )
 flip_v = true

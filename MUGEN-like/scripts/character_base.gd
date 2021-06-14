@@ -7,6 +7,7 @@ export (int) var jump_power = 1000
 
 var velocity = Vector2()
 var height : float = 0.0
+var waterSplash = preload("res://resources/water_splash.tscn")
 
 onready var animController = $AnimatedSprite
 onready var animShadow = $CanvasLayer/Shadow
@@ -23,7 +24,6 @@ func _process(_delta: float) -> void:
 	elif not is_on_floor() and velocity.y > 0: 
 		canvas.offset.y -= 1.5
 	else: canvas.offset.y = self.position.y
-
 
 func char_input(delta) -> float:
 	velocity.x = 0
@@ -45,6 +45,13 @@ func motion(delta):
 	move_and_slide(velocity, Vector2.UP, true)
 
 
+func splash():
+	var array = get_tree().get_nodes_in_group("Splash")
+	if array.size() < 3:
+		var splash_inst = waterSplash.instance()
+		splash_inst.position = Vector2(self.position.x, self.position.y + 55)
+		get_tree().current_scene.add_child(splash_inst)
+		splash_inst.emitting = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

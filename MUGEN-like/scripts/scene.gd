@@ -8,6 +8,7 @@ onready var zoomIn = $Character/Camera2D
 onready var zoomOut = $ZoomOut
 onready var stateLabel = $CanvasLayer/Control/Label
 onready var guiControl = $CanvasLayer/Control
+onready var chara = $Character
 
 func _ready() -> void:
 	stateName = csmNode.state.name

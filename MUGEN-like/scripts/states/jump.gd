@@ -44,6 +44,7 @@ func physics_update(delta: float) -> void:
 	
 	# Landing.
 	if character.is_on_floor():
+		character.splash()
 		character.animController.animation = "landing"
 		character.animShadow.animation = "landing"
 		character.velocity.x = 0
