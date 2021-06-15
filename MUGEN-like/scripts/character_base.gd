@@ -9,6 +9,7 @@ var velocity = Vector2()
 var height : float = 0.0
 var waterSplash = preload("res://resources/water_splash.tscn")
 
+onready var water = get_parent().get_node("Water")
 onready var animController = $AnimatedSprite
 onready var animShadow = $CanvasLayer/Shadow
 onready var canvas = $CanvasLayer
@@ -47,7 +48,7 @@ func motion(delta):
 
 func splash():
 	var array = get_tree().get_nodes_in_group("Splash")
-	if array.size() < 3:
+	if array.size() < 3 and water.visible:
 		var splash_inst = waterSplash.instance()
 		splash_inst.position = Vector2(self.position.x, self.position.y + 55)
 		get_tree().current_scene.add_child(splash_inst)

@@ -310,7 +310,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, -0.0883865 )
 frames = SubResource( 5 )
 animation = "idle"
-frame = 3
+frame = 4
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -320,10 +320,11 @@ __meta__ = {
 follow_viewport_enable = true
 
 [node name="Shadow" type="AnimatedSprite" parent="CanvasLayer"]
+visible = false
 material = SubResource( 7 )
 frames = SubResource( 5 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 offset = Vector2( 0, 118 )
 flip_v = true

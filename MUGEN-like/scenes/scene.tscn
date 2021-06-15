@@ -1,16 +1,23 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/scene.gd" type="Script" id=2]
 [ext_resource path="res://resources/lighting.png" type="Texture" id=3]
 [ext_resource path="res://resources/env.res" type="Environment" id=4]
 [ext_resource path="res://resources/sky.png" type="Texture" id=5]
+[ext_resource path="res://scripts/water.gd" type="Script" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://resources/water.material" type="Material" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 0, 21, 10000, 21, 10000, 95, 0, 95 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="Scene" type="Node2D"]
 script = ExtResource( 2 )
@@ -33,13 +40,14 @@ margin_left = -5000.0
 margin_top = 626.0
 margin_right = 5000.0
 margin_bottom = 724.0
-color = Color( 0.181856, 0.132751, 0.226562, 1 )
+color = Color( 0.160784, 0.109804, 0.2, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect"]
-position = Vector2( 0, 8 )
+visible = false
+position = Vector2( 0, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D"]
 position = Vector2( 751.391, 10.7401 )
@@ -78,12 +86,58 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Control"]
+[node name="GraphicsLabel" type="Label" parent="CanvasLayer/Control"]
+margin_left = 16.0
+margin_top = 144.0
+margin_right = 128.0
+margin_bottom = 158.0
+text = "Graphics options:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomIn" type="CheckBox" parent="CanvasLayer/Control"]
 margin_left = 24.0
 margin_top = 16.0
 margin_right = 118.0
 margin_bottom = 40.0
+custom_styles/focus = SubResource( 3 )
 text = "Zoom-In"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lights" type="CheckBox" parent="CanvasLayer/Control"]
+margin_left = 24.0
+margin_top = 161.339
+margin_right = 118.0
+margin_bottom = 185.339
+custom_styles/focus = SubResource( 4 )
+pressed = true
+text = "Lights"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Water" type="CheckBox" parent="CanvasLayer/Control"]
+margin_left = 24.0
+margin_top = 188.339
+margin_right = 118.0
+margin_bottom = 212.339
+custom_styles/focus = SubResource( 4 )
+pressed = true
+text = "Water"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shadows" type="CheckBox" parent="CanvasLayer/Control"]
+margin_left = 24.0
+margin_top = 215.339
+margin_right = 118.0
+margin_bottom = 239.339
+custom_styles/focus = SubResource( 4 )
+text = "Shadows"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,7 +147,7 @@ anchor_mode = 0
 current = true
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 763.627, 568.4 )
+position = Vector2( 763.627, 576.4 )
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 position = Vector2( 0, -60 )
@@ -103,8 +157,15 @@ limit_bottom = 647
 drag_margin_h_enabled = true
 smoothing_speed = 12.0
 
+[node name="Water" type="Sprite" parent="."]
+modulate = Color( 0.862745, 0.682353, 1, 0.784314 )
+material = ExtResource( 9 )
+position = Vector2( 761.894, 671.543 )
+scale = Vector2( 10000, 1.73304 )
+texture = ExtResource( 7 )
+script = ExtResource( 6 )
+
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( -1.76587, 0.530334 )
 texture = ExtResource( 3 )
 texture_scale = 3.0
 color = Color( 0.572549, 0.196078, 0.513726, 1 )
@@ -112,18 +173,15 @@ energy = 0.95
 range_layer_min = -1
 shadow_enabled = true
 shadow_color = Color( 0.0470588, 0, 0.0980392, 1 )
-
-[node name="Water" type="ColorRect" parent="."]
-margin_left = -5000.0
-margin_top = 626.0
-margin_right = 5000.0
-margin_bottom = 655.0
-color = Color( 0.494118, 0.34902, 0.74902, 0.392157 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
 
-[connection signal="toggled" from="CanvasLayer/Control/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/ZoomIn" to="." method="_on_ZoomIn_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/Lights" to="." method="_on_Lights_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/Water" to="." method="_on_Water_toggled"]
+[connection signal="toggled" from="CanvasLayer/Control/Shadows" to="." method="_on_Shadows_toggled"]
+[connection signal="item_rect_changed" from="Water" to="Water" method="_on_Water_item_rect_changed"]

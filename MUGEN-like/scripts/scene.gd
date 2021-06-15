@@ -25,8 +25,25 @@ func _process(_delta: float) -> void:
 		stateLabel.text = "State: %s" % stateName
 		currentState = stateName
 
-func _on_CheckBox_toggled(_button_pressed: bool) -> void:
+
+func _on_ZoomIn_toggled(_button_pressed: bool) -> void:
 	if zoomIn.current == true:
 		zoomOut.current = true
 	else:
 		zoomIn.current = true
+
+func _on_Lights_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		$Light2D.enabled = true
+	else: $Light2D.enabled = false
+
+func _on_Water_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		$Water.show()
+	else:
+		$Water.hide()
+
+func _on_Shadows_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		chara.animShadow.show()
+	else: chara.animShadow.hide()
