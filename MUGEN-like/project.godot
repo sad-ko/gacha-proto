@@ -20,20 +20,20 @@ _global_script_classes=[ {
 "path": "res://scripts/character_StateMachine.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "_old_character_base",
+"language": "GDScript",
+"path": "res://scripts/_old/_old_characteres_base.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "character_base",
 "language": "GDScript",
 "path": "res://scripts/character_base.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "character_base_bak",
-"language": "GDScript",
-"path": "res://scripts/characteres_base-bak.gd"
 } ]
 _global_script_class_icons={
 "State": "",
 "StateMachine": "",
-"character_base": "",
-"character_base_bak": ""
+"_old_character_base": "",
+"character_base": ""
 }
 
 [application]

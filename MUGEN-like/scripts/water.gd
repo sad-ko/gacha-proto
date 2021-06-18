@@ -9,3 +9,7 @@ func _zoom_changed():
 
 func _on_Water_item_rect_changed() -> void:
 	material.set_shader_param("scale", scale)
+
+
+func _on_WaterAnim_animation_finished(_anim_name: String) -> void:
+	get_parent().get_node("WaterAnim").stop(true)

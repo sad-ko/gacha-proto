@@ -1,12 +1,17 @@
-# walk.gd
+##################################walk.gd#######################################
+""" Estado de movimiento horizontal, solo se activa si el personaje es
+	movido por el usuario """
+################################################################################
 extends State
 
 
 func physics_update(delta: float) -> void:
+	# Explicado en idle.gd #
 	if not character.is_on_floor():
 		state_machine.transition_to("Jump")
 		return
-
+	
+	# Recibe el valor actual del eje X #
 	var input_direction_x : float = character.char_input(delta)
 	walking_direction(input_direction_x)
 	
@@ -19,10 +24,14 @@ func physics_update(delta: float) -> void:
 	elif Input.is_action_just_pressed("stagger"):
 		state_machine.transition_to("Stagger")
 
+
+### Depende el valor del eje X, para que lado mira el personaje ###
 func walking_direction(facing):
 	if facing > 0:
 		character.animController.animation = "walk_right"
-		character.animShadow.animation = "walk_right"
 	elif facing < 0:
 		character.animController.animation = "walk_left"
-		character.animShadow.animation = "walk_left"
+
+
+
+################################################################################

@@ -1,25 +1,35 @@
-# Generic state machine. Initializes states and delegates engine callbacks
-# (_physics_process, _unhandled_input) to the active state.
-class_name StateMachine
+################################character_StateMachine.gd#######################
+""" Inicializa y controla el estado actual, delega las funciones del engine
+	(_process, _physics_process, _unhandled_input) al estado actual """
+################################################################################
 extends Node
+class_name StateMachine
 
-# Emitted when transitioning to a new state.
+### Señal emitida cuando se cambia de estado,	###
+##  actualmente no cumple ninguna funcion		 ##
 signal transitioned(state_name)
 
-# Path to the initial active state. We export it to be able to pick the initial state in the inspector.
+### Estado inicial de la maquina, en nuestro caso es Idle		###
+##  pero siempre podria ser otro, como un estado de introduccion ##
 export var initial_state := NodePath()
 
-# The current active state. At the start of the game, we get the `initial_state`.
+### Estado actual, al principio comienza con el estado inicial ###
 onready var state: State = get_node(initial_state)
 
+
 func _ready() -> void:
+	# Espera que el nodo principal termine de cargar #
 	yield(owner, "ready")
-	# The state machine assigns itself to the State objects' state_machine property.
+	
+	# Se asigna dentro de la variable "state_machine" que contiene todo hijo
+	# de este estado.
 	for child in get_children():
 		child.state_machine = self
-	state.enter()
+	
+	state.enter() # Inicializa el estado
 
-# The state machine subscribes to node callbacks and delegates them to the state objects.
+
+### Delega las funciones del engine al estado actual ###
 func _unhandled_input(event: InputEvent) -> void:
 	state.handle_input(event)
 
@@ -29,17 +39,19 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 
-# This function calls the current state's exit() function, then changes the active state,
-# and calls its enter function.
-# It optionally takes a `msg` dictionary to pass to the next state's enter() function.
+
+### 					Transiciona a un nuevo estado					###
+## Opcionalmente toma un mensaje que puede transmitir al siguente estado ##
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	# Safety check, you could use an assert() here to report an error if the state name is incorrect.
-	# We don't use an assert here to help with code reuse. If you reuse a state in different state machines
-	# but you don't want them all, they won't be able to transition to states that aren't in the scene tree.
+	# Verifica que el nodo al cual se va a transicionar exista #
 	if not has_node(target_state_name):
 		return
-
-	state.exit()
+	
+	state.exit() # Realiza una ultima funcion antes de pasar de estado
 	state = get_node(target_state_name)
-	state.enter(msg)
+	state.enter(msg) # Inicializa el nuevo estado con los mensajes opcionales
 	emit_signal("transitioned", state.name)
+
+
+
+################################################################################

@@ -1,56 +1,59 @@
-# Virtual base class for all states.
-class_name State
+#####################################states.gd##################################
+""" Clase base para todos los estados, todo nodo extendido de esta clase
+	podra utilizar sus variables y funciones nativamente """
+################################################################################
 extends Node
+class_name State
 
-# Reference to the state machine, to call its `transition_to()` method directly.
-# That's one unorthodox detail of our state implementation, as it adds a dependency between the
-# state and the state machine objects, but we found it to be most efficient for our needs.
-# The state machine node will set it.
+### Variable que deriva a la maquina de estados ###
+##  la propia maquina se asignara a si mismo	 ##
 var state_machine = null
 
-# Typed reference to the player node.
-onready var character = owner
-
+### Referencia al nodo base del personaje 		###
+##  solo definimos su clase, se asigna despues	 ##
+var character : character_base
 
 func _ready() -> void:
-	# The states are children of the `Player` node so their `_ready()` callback will execute first.
-	# That's why we wait for the `owner` to be ready first.
+	# Espera que el nodo principal termine de cargar #
 	yield(owner, "ready")
+	
+	# Asigna el root node de la escena como el personaje #
+	character = owner as character_base
 
 
-# Virtual function. Receives events from the `_unhandled_input()` callback.
+### Funciones del engine derivadas de la maquina de estados ###
+## handle_input() == _unhandled_input() ##
 func handle_input(_event: InputEvent) -> void:
 	pass
-
-
-# Virtual function. Corresponds to the `_process()` callback.
+	
+## update() == _process() ##
 func update(_delta: float) -> void:
 	pass
 
-
-# Virtual function. Corresponds to the `_physics_process()` callback.
+## physics_update() == _physics_process() ##
 func physics_update(_delta: float) -> void:
 	pass
 
 
-# Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
-# is a dictionary with arbitrary data the state can use to initialize itself.
+### Funcion que se ejecuta solo cuando se inicializa el estado 		 ###
+##  es llamado por la maquina de estados, permite mensajes opcionales ##
 func enter(_msg := {}) -> void:
 	pass
 
 
-# Virtual function. Called by the state machine before changing the active state. Use this function
-# to clean up the state.
+### Funcion que se ejecuta solo cuando se termina el estado			###
+##  es llamado por la maquina de estados antes de pasar de estado	 ##
 func exit() -> void:
 	pass
 
 
-# Controls the direction that the jump is about to realize, since is needed by various states
-# it's added as a primitive function.
+### Controla la direccion del salto, como es llamado en varios estados ###
+##  se lo armo como primitva para evitar copiar el mismo codigo			##
 func jumping_direction() -> int:
 	var jumped : int = 1
 	
 	if Input.is_action_pressed("walk_right") and Input.is_action_just_pressed("jump"):
+										  # Mensaje opcional que recibe enter()
 		state_machine.transition_to("Jump", {do_jump_forward = true})
 	elif Input.is_action_pressed("walk_left") and Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Jump", {do_jump_backward = true})
@@ -59,3 +62,7 @@ func jumping_direction() -> int:
 	else: jumped = 0
 	
 	return jumped
+
+
+
+################################################################################

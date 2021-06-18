@@ -1,4 +1,4 @@
-extends character_base
+extends _old_character_base
 
 onready var idle_anim = $Timer
 onready var extra_anim = $AnimationPlayer
